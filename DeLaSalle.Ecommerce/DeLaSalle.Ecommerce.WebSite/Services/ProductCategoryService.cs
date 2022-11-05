@@ -12,6 +12,7 @@ public class ProductCategoryService : IProductCategoryService
     
     public ProductCategoryService()
     {
+        
     }
     
     public async Task<Response<List<ProductCategoryDto>>> GetAllAsync()
@@ -23,5 +24,16 @@ public class ProductCategoryService : IProductCategoryService
         var response = JsonConvert.DeserializeObject<Response<List<ProductCategoryDto>>>(json);
         return response;
     }
-    
+
+    public async Task<Response<ProductCategoryDto>> GetById(int id)
+    {
+        var url = $"{_baseURL}{_endpoint}/{id}";
+        var client = new HttpClient();
+        var res = await client.GetAsync(url);
+        var json = await res.Content.ReadAsStringAsync();
+        var response = JsonConvert.DeserializeObject<Response<ProductCategoryDto>>(json);
+        
+        return response;
+        
+    }
 }

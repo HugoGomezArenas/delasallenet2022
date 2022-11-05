@@ -1,0 +1,42 @@
+@page "{id:int?}"
+@model DeLaSalle.Ecommerce.WebSite.Pages.ProductCategory.Edit
+
+
+<div class="container-fluid">
+    
+    <div class="row">
+        <div class="col-md-1"></div>
+        
+        <div class="col-md-10">
+            
+            <h2>Editing </h2>
+            
+            <form method="post">
+                <input type="hidden" />
+                <div class="form-group">
+                    <label asp-for="ProductCategoryDto.Name"></label>
+                    <input  asp-for="ProductCategoryDto.Name" class="form-control" maxlength="45">
+                    <span class="text-danger" asp-validation-for="ProductCategoryDto.Name" ></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ProductCategoryDto.Description"></label>
+                    <input asp-for="ProductCategoryDto.Description" class="form-control" maxlength="100">
+                    <span class="text-danger" asp-validation-for="ProductCategoryDto.Description"></span>
+                </div>
+                <div class="row">
+                    <div class="cold-md-12 text-right">
+                        <button type="submit" class="btn btn-primary mr-3">Save</button>
+                        <a class="btn btn-secondary">Cancel</a>
+                    </div>
+                </div>
+            </form>
+            
+        </div>
+        
+        <div class="col-md-1"></div>
+    </div>
+    
+    
+    
+</div>
+

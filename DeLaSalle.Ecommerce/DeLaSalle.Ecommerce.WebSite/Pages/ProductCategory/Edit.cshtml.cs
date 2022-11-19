@@ -1,4 +1,5 @@
 using DeLaSalle.Ecommerce.Core.Dto;
+using DeLaSalle.Ecommerce.Core.Http;
 using DeLaSalle.Ecommerce.WebSite.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -40,10 +41,26 @@ public class Edit : PageModel
 
     public async Task<IActionResult> OnPostAsync()
     {
-        var name = ProductCategoryDto.Name;
-        var description = ProductCategoryDto.Description;
-        
+        if (!ModelState.IsValid)
+        {
+            return Page();
+        }
 
+        Response<ProductCategoryDto> response;
+        
+        if (ProductCategoryDto.Id > 0)
+        {
+            // Update
+            response = await _service.UpdateAsync(ProductCategoryDto);
+        }
+        else
+        {
+            // Insert 
+            response = await _service.SaveAsync(ProductCategoryDto);
+        }
+
+        ProductCategoryDto = response.Data;
+        
         return RedirectToPage("./List");
     }
 

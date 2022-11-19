@@ -12,11 +12,13 @@
             <h2>Editing </h2>
             
             <form method="post">
-                <input type="hidden" />
+                
+                <input type="hidden" asp-for="ProductCategoryDto.Id"/>
+                <p>@Model.ProductCategoryDto.Id</p>
                 <div class="form-group">
                     <label asp-for="ProductCategoryDto.Name"></label>
-                    <input  asp-for="ProductCategoryDto.Name" class="form-control" maxlength="45">
-                    <span class="text-danger" asp-validation-for="ProductCategoryDto.Name" ></span>
+                    <input asp-for="ProductCategoryDto.Name" class="form-control" maxlength="45">
+                    <span class="text-danger" asp-validation-for="ProductCategoryDto.Name"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="ProductCategoryDto.Description"></label>

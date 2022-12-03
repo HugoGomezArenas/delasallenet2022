@@ -23,11 +23,12 @@ public class ProductCategoriesController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<Response<List<ProductCategoryDto>>>> GetAll()
     {
-        var response = new Response<List<ProductCategoryDto>>
-        {
-            Data = await _productCategoryService.GetAllAsync()
-        };
-        
+        var response = new Response<List<ProductCategoryDto>>();
+
+        var ex = new MyHttpResponseException();
+        ex.MyProp = "my value";
+        throw new MyHttpResponseException();
+        response.Data = await _productCategoryService.GetAllAsync();
         return Ok(response);
     }
     
@@ -56,6 +57,7 @@ public class ProductCategoriesController : ControllerBase
         if (!await _productCategoryService.ProductCategoryExist(id))
         {
             response.Errors.Add("Product Category Not Found");
+        
             return NotFound(response);
         } 
 
@@ -96,4 +98,9 @@ public class ProductCategoriesController : ControllerBase
         return Ok(response);
     }
     
+}
+
+public class MyHttpResponseException : Exception
+{
+    public string MyProp;
 }

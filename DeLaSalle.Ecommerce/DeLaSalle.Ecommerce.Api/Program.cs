@@ -2,6 +2,7 @@ using System.Data.Common;
 using Dapper.Contrib.Extensions;
 using DeLaSalle.Ecommerce.Api.DataAccess;
 using DeLaSalle.Ecommerce.Api.DataAccess.Interfaces;
+using DeLaSalle.Ecommerce.Api.Middlewares;
 using DeLaSalle.Ecommerce.Api.Repositories;
 using DeLaSalle.Ecommerce.Api.Repositories.Interfaces;
 using DeLaSalle.Ecommerce.Api.Services;
@@ -40,6 +41,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.ConfigureExceptionHandler();
 
 app.UseHttpsRedirection();
 
